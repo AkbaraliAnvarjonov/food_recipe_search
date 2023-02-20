@@ -1,8 +1,8 @@
-import 'package:food_recipe/data/models/food_model.dart';
+import 'package:food_recipe/data/models/search_model.dart';
 
 class MyResponse {
   String error;
-  FoodModel? data;
+  SearchModel? data;
 
   MyResponse({this.data, this.error = ''});
 }

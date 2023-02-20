@@ -1,3 +1,3 @@
 abstract class FoodsEvent {}
 
-class FetchDefaultFoods extends FoodsEvent {}
+class FetchSearchingFoods extends FoodsEvent {}

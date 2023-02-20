@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_recipe/bloc/food_bloc.dart';
 import 'package:food_recipe/bloc/food_event.dart';
@@ -21,7 +20,7 @@ class HomePage extends StatelessWidget {
                   child: GridView.builder(
                     physics: const BouncingScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: state.foods.length,
+                    itemCount: state.hits.length,
                     gridDelegate:
                         const SliverGridDelegateWithMaxCrossAxisExtent(
                             maxCrossAxisExtent: 120,
@@ -29,7 +28,7 @@ class HomePage extends StatelessWidget {
                             crossAxisSpacing: 20,
                             mainAxisSpacing: 20),
                     itemBuilder: (context, index) =>
-                        ListTile(title: Text(state.foods[index].food.category)),
+                        ListTile(title: Text(state.hits[index].recipe.label)),
                   ));
             } else if (state is GetFoodsInProgressState) {
               return const Center(
@@ -38,7 +37,7 @@ class HomePage extends StatelessWidget {
             } else if (state is GetFoodsInFailuryState) {
               return Text(state.error);
             } else {
-              currentBloc.add(FetchDefaultFoods());
+              currentBloc.add(FetchSearchingFoods());
               return Container();
             }
           },

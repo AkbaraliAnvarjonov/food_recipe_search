@@ -7,14 +7,14 @@ import 'package:food_recipe/get_it/get_it_meals.dart';
 
 class FoodsBloc extends Bloc<FoodsEvent, FoodsState> {
   FoodsBloc() : super(FoodsInitial()) {
-    on<FetchDefaultFoods>(getDefaultFood);
+    on<FetchSearchingFoods>(getDefaultFood);
   }
 
-  getDefaultFood(FetchDefaultFoods event, Emitter<FoodsState> emit) async {
+  getDefaultFood(FetchSearchingFoods event, Emitter<FoodsState> emit) async {
     emit(GetFoodsInProgressState());
-    MyResponse myResponse = await getIt<FoodApiService>().getDefaultFoods();
+    MyResponse myResponse = await getIt<FoodApiService>().getSearchingFoods();
     if (myResponse.error.isEmpty) {
-      emit(GetFoodsInSuccessState(foods: myResponse.data!.hints));
+      emit(GetFoodsInSuccessState(hits: myResponse.data!.hits));
     } else {
       emit(GetFoodsInFailuryState(error: myResponse.error));
     }

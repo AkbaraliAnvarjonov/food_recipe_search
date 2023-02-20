@@ -1,14 +1,14 @@
 class Next {
   Next({
-    required this.title,
     required this.href,
+    required this.title,
   });
 
-  String title;
   String href;
+  String title;
 
   factory Next.fromJson(Map<String, dynamic> json) => Next(
-        title: json["title"],
-        href: json["href"],
+        href: json["href"] as String? ?? "",
+        title: json["title"] as String? ?? "",
       );
 }
